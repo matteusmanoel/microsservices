@@ -6,8 +6,8 @@ Sistema de microsserviços desenvolvido em **Java 17** com **Quarkus**, implemen
 
 <img width="711" height="558" alt="image" src="https://github.com/user-attachments/assets/b1c38482-b692-4901-acd0-40fe6f6718e5" />
 
-
 ### **Características da Arquitetura**
+
 - **Microsserviços independentes** com responsabilidades bem definidas
 - **Comunicação síncrona** via HTTP REST
 - **Banco de dados separado** para cada contexto
@@ -18,12 +18,14 @@ Sistema de microsserviços desenvolvido em **Java 17** com **Quarkus**, implemen
 ## 🎯 Funcionalidades Implementadas
 
 ### **💰 API de Moedas (Porta 8080)**
+
 - **Listar moedas disponíveis** - `GET /api/currency/available`
 - **Obter cotação específica** - `GET /api/currency/quote/{from}/{to}`
 - **Obter múltiplas cotações** - `GET /api/currency/quotes/{base}?currencies={moedas}`
 - **Integração com AwesomeAPI** para cotações em tempo real
 
 ### **🛒 Sistema de Carrinho (Porta 8081)**
+
 - **Gestão de Produtos:**
   - CRUD completo de produtos
   - Categorização e busca
@@ -124,57 +126,224 @@ cd projeto-2-system-cart
 
 Collection completa disponível para importação com todos os endpoints documentados e organizados por funcionalidade.
 
-## 🔮 Roadmap Futuro
+### **🧪 Estratégia de Testes**
 
-### **Fase 2: Mensageria e Eventos**
-- [ ] Integração com Apache Kafka
-- [ ] Comunicação assíncrona entre serviços
-- [ ] Event sourcing para auditoria
+#### **Testes Unitários (Fase 1)**
 
-### **Fase 3: Segurança e Autenticação**
-- [ ] Integração com Keycloak
-- [ ] Autenticação JWT
-- [ ] Autorização baseada em roles
+```bash
+# Executar testes unitários
+cd projeto-1-api-moedas
+./gradlew test
 
-### **Fase 4: Monitoramento e Observabilidade**
-- [ ] Métricas com Prometheus
-- [ ] Logs centralizados com ELK Stack
-- [ ] Tracing distribuído com Jaeger
+cd ../projeto-2-system-cart
+./gradlew test
+```
 
-### **Fase 5: Escalabilidade e Performance**
-- [ ] Cache distribuído com Redis
-- [ ] Load balancing
-- [ ] Auto-scaling com Kubernetes
+#### **Testes de Integração (Fase 1)**
 
-## 📊 Status Atual
+```bash
+# Executar testes de integração
+cd projeto-1-api-moedas
+./gradlew integrationTest
+
+cd ../projeto-2-system-cart
+./gradlew integrationTest
+```
+
+#### **Cobertura de Código**
+
+```bash
+# Gerar relatório de cobertura
+cd projeto-1-api-moedas
+./gradlew jacocoTestReport
+
+cd ../projeto-2-system-cart
+./gradlew jacocoTestReport
+```
+
+### **📊 Métricas de Qualidade**
+
+- **Cobertura de Código:** Meta > 80%
+- **Testes Unitários:** Todos os serviços principais
+- **Testes de Integração:** Fluxos end-to-end
+- **Testes de Performance:** Latência < 200ms
+
+## 🔮 Roadmap Estratégico - Plano de Evolução
+
+### **Fase 1: Testes e Qualidade (Semana 1)**
+
+- [ ] **Testes Unitários** com JUnit 5 e Mockito
+  - [ ] Testes para API de Moedas
+  - [ ] Testes para Sistema de Carrinho
+  - [ ] Cobertura de código e qualidade
+- [ ] **Testes de Integração** com Testcontainers
+  - [ ] Testes end-to-end das APIs
+  - [ ] Validação de comunicação entre serviços
+  - [ ] Testes com banco de dados real
+
+### **Fase 2: Mensageria e Eventos (Semana 2)**
+
+- [ ] **Integração com Apache Kafka**
+  - [ ] Configuração Kafka + Zookeeper no Docker
+  - [ ] Eventos de carrinho (item adicionado, removido, carrinho limpo)
+  - [ ] Eventos de cotação de moedas
+  - [ ] Comunicação assíncrona entre serviços
+- [ ] **Arquitetura Event-Driven**
+  - [ ] Produtores e consumidores de eventos
+  - [ ] Padrões de mensageria (Pub/Sub)
+  - [ ] Resiliência e Dead Letter Queues
+
+### **Fase 3: Segurança e Autenticação (Semana 3)**
+
+- [ ] **Integração com Keycloak**
+  - [ ] Configuração de realm e clientes
+  - [ ] Usuários, roles e políticas de acesso
+  - [ ] Single Sign-On entre serviços
+- [ ] **Segurança nas APIs**
+  - [ ] Autenticação JWT
+  - [ ] Autorização baseada em roles (RBAC)
+  - [ ] Endpoints protegidos e públicos
+  - [ ] Auditoria de acessos
+
+### **Fase 4: Performance e Escalabilidade (Semana 4)**
+
+- [ ] **Testes de Carga e Performance**
+  - [ ] Configuração JMeter ou K6
+  - [ ] Cenários de teste (produtos, carrinhos, cotações)
+  - [ ] Métricas de throughput, latência e error rate
+  - [ ] Análise de gargalos e otimizações
+- [ ] **Monitoramento e Observabilidade**
+  - [ ] Métricas com Prometheus
+  - [ ] Logs centralizados com ELK Stack
+  - [ ] Health checks avançados
+  - [ ] Alertas e dashboards
+
+### **Fase 5: Infraestrutura Avançada (Futuro)**
+
+- [ ] **Cache e Performance**
+  - [ ] Cache distribuído com Redis
+  - [ ] Otimizações de consultas
+  - [ ] Connection pooling
+- [ ] **Escalabilidade**
+  - [ ] Load balancing
+  - [ ] Auto-scaling com Kubernetes
+  - [ ] Service mesh (Istio)
+- [ ] **Resiliência**
+  - [ ] Circuit breakers
+  - [ ] Retry policies
+  - [ ] Fallback strategies
+
+### **📊 Cronograma de Implementação**
+
+| Semana | Fase        | Foco                           | Entregáveis                          |
+| ------ | ----------- | ------------------------------ | ------------------------------------ |
+| **1**  | Testes      | Qualidade e Confiabilidade     | Testes unitários + integração        |
+| **2**  | Kafka       | Mensageria Assíncrona          | Eventos + comunicação entre serviços |
+| **3**  | Keycloak    | Segurança e Autenticação       | APIs protegidas + SSO                |
+| **4**  | Performance | Escalabilidade e Monitoramento | Testes de carga + observabilidade    |
+
+### **🎯 Objetivos de Aprendizado por Fase**
+
+- **Fase 1:** Fundamentos de testing, TDD, qualidade de código
+- **Fase 2:** Arquitetura de mensageria, padrões assíncronos, resiliência
+- **Fase 3:** OAuth 2.0, JWT, segurança em microsserviços, RBAC
+- **Fase 4:** Performance testing, métricas, monitoramento, análise de dados
+- **Fase 5:** Infraestrutura cloud-native, escalabilidade, DevOps avançado
+
+## 📊 Status Atual e Progresso
+
+### **✅ Fase 0: MVP Completo (Concluído)**
 
 - ✅ **API Moedas:** Funcionando perfeitamente
 - ✅ **System Cart:** Funcionando perfeitamente
 - ✅ **Comunicação:** Funcionando entre os serviços
 - ✅ **Banco de Dados:** Funcionando com dados iniciais
 - ✅ **Docker:** Funcionando perfeitamente
-- 🔄 **Kafka:** Em desenvolvimento
-- 🔄 **Keycloak:** Em desenvolvimento
+- ✅ **Documentação:** README completo e APIs documentadas
+
+### **🔄 Fase 1: Testes e Qualidade (Em Planejamento)**
+
+- [ ] **Testes Unitários:** JUnit 5 + Mockito
+- [ ] **Testes de Integração:** Testcontainers + E2E
+- [ ] **Cobertura de Código:** Relatórios de qualidade
+
+### **⏳ Fase 2: Mensageria e Eventos (Pendente)**
+
+- [ ] **Apache Kafka:** Configuração e integração
+- [ ] **Eventos Assíncronos:** Comunicação entre serviços
+- [ ] **Arquitetura Event-Driven:** Padrões de mensageria
+
+### **⏳ Fase 3: Segurança e Autenticação (Pendente)**
+
+- [ ] **Keycloak:** Configuração e integração
+- [ ] **JWT:** Autenticação e autorização
+- [ ] **RBAC:** Controle de acesso baseado em roles
+
+### **⏳ Fase 4: Performance e Monitoramento (Pendente)**
+
+- [ ] **Testes de Carga:** JMeter/K6 + métricas
+- [ ] **Observabilidade:** Prometheus + ELK Stack
+- [ ] **Dashboards:** Monitoramento em tempo real
+
+### **📈 Próximos Passos**
+
+1. **Implementar testes unitários** para ambas as APIs
+2. **Configurar testes de integração** com Testcontainers
+3. **Preparar base** para integração com Kafka
+
+### **🚀 Próximas Fases de Desenvolvimento**
+
+#### **Semana 1: Testes e Qualidade**
+
+- Implementação de testes unitários com JUnit 5
+- Configuração de testes de integração
+- Relatórios de cobertura de código
+- Validação de qualidade e confiabilidade
+
+#### **Semana 2: Mensageria com Kafka**
+
+- Configuração do cluster Kafka no Docker
+- Implementação de eventos assíncronos
+- Comunicação entre serviços via mensageria
+- Padrões de resiliência e Dead Letter Queues
+
+#### **Semana 3: Segurança com Keycloak**
+
+- Configuração do servidor Keycloak
+- Implementação de autenticação JWT
+- Controle de acesso baseado em roles (RBAC)
+- Proteção das APIs e auditoria
+
+#### **Semana 4: Performance e Monitoramento**
+
+- Testes de carga com JMeter/K6
+- Métricas de performance e escalabilidade
+- Dashboards de monitoramento
+- Análise de gargalos e otimizações
 
 ## 🤝 Como Contribuir
 
 ### **1. Fork o projeto**
+
 ```bash
 git clone https://github.com/seu-usuario/microsservices.git
 cd microsservices
 ```
 
 ### **2. Crie uma branch para sua feature**
+
 ```bash
 git checkout -b feature/AmazingFeature
 ```
 
 ### **3. Commit suas mudanças**
+
 ```bash
 git commit -m 'Add some AmazingFeature'
 ```
 
 ### **4. Push para a branch**
+
 ```bash
 git push origin feature/AmazingFeature
 ```
@@ -188,6 +357,7 @@ Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) par
 ## 👨‍💻 Autor
 
 **Matteus Manoel**
+
 - **GitHub:** [@matteusmanoel](https://github.com/matteusmanoel)
 - **LinkedIn:** [Perfil LinkedIn](https://linkedin.com/in/seu-perfil)
 
@@ -211,15 +381,16 @@ Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) par
 ## 🏷️ Tags/Topics
 
 ```
-quarkus, java, microservices, docker, postgresql, rest-api, 
-gradle, quarkus-framework, java-17, microservices-architecture, 
-docker-compose, postgres, rest-client, openapi, swagger, 
+quarkus, java, microservices, docker, postgresql, rest-api,
+gradle, quarkus-framework, java-17, microservices-architecture,
+docker-compose, postgres, rest-client, openapi, swagger,
 health-checks, panache, hibernate
 ```
 
 ## 📋 Comandos Úteis
 
 ### **Desenvolvimento**
+
 ```bash
 # Build dos projetos
 ./gradlew build                    # Build individual
@@ -234,7 +405,23 @@ docker-compose down               # Parar e remover containers
 docker-compose down -v            # Parar e remover volumes
 ```
 
+### **Testes e Qualidade**
+
+```bash
+# Testes unitários
+./gradlew test                     # Executar testes unitários
+./gradlew test --tests "*ServiceTest" # Testes específicos
+
+# Testes de integração
+./gradlew integrationTest          # Executar testes de integração
+
+# Cobertura de código
+./gradlew jacocoTestReport         # Gerar relatório de cobertura
+./gradlew jacocoTestCoverageVerification # Verificar cobertura mínima
+```
+
 ### **Manutenção**
+
 ```bash
 # Limpar build
 ./gradlew clean                   # Limpar build local
