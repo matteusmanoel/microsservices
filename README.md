@@ -47,7 +47,7 @@ Sistema de microsserviços desenvolvido em **Java 17** com **Quarkus**, implemen
 ## 📁 Estrutura do Projeto
 
 ```
-itaipu-microsservicos/
+microsservices/
 ├── projeto-1-api-moedas/          # API de Cotações de Moedas
 │   ├── src/main/java/br/com/itaipu/
 │   │   ├── api/                   # Controllers REST
@@ -85,8 +85,8 @@ itaipu-microsservicos/
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/matteusmanoel/microsservicos.git
-cd microsservicos
+git clone https://github.com/matteusmanoel/microsservices.git
+cd microsservices
 
 # 2. Execute com Docker Compose
 docker-compose up --build
@@ -160,8 +160,8 @@ Collection completa disponível para importação com todos os endpoints documen
 
 ### **1. Fork o projeto**
 ```bash
-git clone https://github.com/seu-usuario/microsservicos.git
-cd microsservicos
+git clone https://github.com/seu-usuario/microsservices.git
+cd microsservices
 ```
 
 ### **2. Crie uma branch para sua feature**
@@ -199,8 +199,8 @@ Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) par
 
 ## 📞 Suporte
 
-- **Issues:** [GitHub Issues](https://github.com/matteusmanoel/microsservicos/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/matteusmanoel/microsservicos/discussions)
+- **Issues:** [GitHub Issues](https://github.com/matteusmanoel/microsservices/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/matteusmanoel/microsservices/discussions)
 
 ---
 
@@ -238,7 +238,6 @@ docker-compose down -v            # Parar e remover volumes
 ```bash
 # Limpar build
 ./gradlew clean                   # Limpar build local
-docker system prune -f           # Limpar Docker
 
 # Verificar status
 docker-compose ps                # Status dos containers
