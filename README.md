@@ -359,7 +359,7 @@ Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) par
 **Matteus Manoel**
 
 - **GitHub:** [@matteusmanoel](https://github.com/matteusmanoel)
-- **LinkedIn:** [Perfil LinkedIn](https://linkedin.com/in/seu-perfil)
+- **LinkedIn:** [Perfil LinkedIn](https://linkedin.com/in/matteusmanoel)
 
 ## 🙏 Agradecimentos
 
